@@ -184,13 +184,33 @@ body.active .love-letter {
 
 <div class="love-letter">
   <h2>I Love you, Abigail</h2>
+<<<<<<< HEAD
+<<<<<<< HEAD:Vday.html
+  <p>Stay Alien, you're perfect just the way you are... for real you're actually perect.. enjoy da song :pp 💕</p>
+=======
   <p>Stay Alien, you're perfect just the way you are... for real you're actually perect.. enjoy da song :p 💕</p>
+>>>>>>> b29fcff8a726491bb86af98101699f3fb83c3d01:index.html
+=======
+  <p>Stay Alien, you're perfect just the way you are... for real you're actually perect.. enjoy da song :p 💕</p>
+>>>>>>> b29fcff8a726491bb86af98101699f3fb83c3d01
 </div>
 
 <script>
 let isPlaying = false;
+let penguinInterval = null;
+
 
 function activateLove() {
+
+  const btn = document.querySelector("button");
+  btn.innerText = "Reset Love 💔";
+  // If already active → RESET
+  if (document.body.classList.contains("active")) {
+    resetLove();
+    return;
+  }
+
+  // Activate
   document.body.classList.add("active");
 
   createPenguins();
@@ -209,7 +229,8 @@ function activateLove() {
 
 /* Create Floating Penguins */
 function createPenguins() {
-  setInterval(() => {
+
+  penguinInterval = setInterval(() => {
     let penguin = document.createElement("div");
     penguin.className = "penguin";
     penguin.innerHTML = "🐧";
@@ -220,7 +241,6 @@ function createPenguins() {
 
     document.body.appendChild(penguin);
 
-    // Remove after animation to prevent lag
     setTimeout(() => {
       penguin.remove();
     }, 8000);
@@ -251,6 +271,28 @@ function createSparkles() {
     document.body.appendChild(sparkle);
   }
 }
+
+function resetLove() {
+
+  document.querySelector("button").innerText = "Press for Noot 💌";
+
+  // Remove active background
+  document.body.classList.remove("active");
+
+  // Stop penguin spawning
+  clearInterval(penguinInterval);
+  penguinInterval = null;
+
+  // Remove all floating elements
+  document.querySelectorAll(".penguin, .rose, .sparkle").forEach(el => el.remove());
+
+  // Stop music
+  const song = document.getElementById("loveSong");
+  song.pause();
+  song.currentTime = 0;
+  isPlaying = false;
+}
+
 </script>
 
 </body>
