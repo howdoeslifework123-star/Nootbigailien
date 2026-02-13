@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Surprise 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #ff4d6d;
+  --dark: #1a001f;
+  --light: #fff0f5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #1a001f, #330033);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  transition: background 2s ease;
+}
+
+/* Background Glow Animation */
+body.active {
+  animation: bgGlow 6s infinite alternate;
+}
+
+@keyframes bgGlow {
+  0% { background: linear-gradient(135deg, #1a001f, #330033); }
+  100% { background: linear-gradient(135deg, #ff4d6d, #ff99cc); }
+}
+
+/* Main Title */
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: 1.5s;
+}
+
+body.active h1 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Button */
+button {
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 50px;
+  background: var(--pink);
+  color: white;
+  cursor: pointer;
+  transition: 0.4s;
+  box-shadow: 0 0 20px rgba(255, 77, 109, 0.6);
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 40px rgba(255, 77, 109, 1);
+}
+
+/* Floating Hearts */
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: floatUp 5s linear infinite;
+  opacity: 0;
+}
+
+body.active .heart {
+  opacity: 1;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(1); }
+  100% { transform: translateY(-10vh) scale(1.5); }
+}
+
+/* Falling Roses */
+.rose {
+  position: absolute;
+  font-size: 24px;
+  animation: fall 6s linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Sparkles */
+.sparkle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: white;
+  border-radius: 50%;
+  animation: sparkle 2s infinite alternate;
+}
+
+@keyframes sparkle {
+  0% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+/* Love Letter */
+.love-letter {
+  position: fixed;
+  bottom: -200px;
+  background: white;
+  color: #333;
+  padding: 20px 30px;
+  border-radius: 20px;
+  transition: 1.5s;
+  text-align: center;
+  max-width: 300px;
+}
+
+body.active .love-letter {
+  bottom: 40px;
+}
+
+.love-letter h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: var(--pink);
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Happy Valentine's Day 💖</h1>
+
+<button onclick="activateLove()">Click for a Surprise 💌</button>
+
+<div class="love-letter">
+  <h2>My Love</h2>
+  <p>You make my world brighter, warmer, and filled with love. 💕</p>
+</div>
+
+<script>
+function activateLove() {
+  document.body.classList.add("active");
+
+  createHearts();
+  createRoses();
+  createSparkles();
+}
+
+/* Create Floating Hearts */
+function createHearts() {
+  for (let i = 0; i < 30; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+  }
+}
+
+/* Create Falling Roses */
+function createRoses() {
+  for (let i = 0; i < 20; i++) {
+    let rose = document.createElement("div");
+    rose.className = "rose";
+    rose.innerHTML = "🌹";
+    rose.style.left = Math.random() * 100 + "vw";
+    rose.style.animationDuration = (4 + Math.random() * 4) + "s";
+    document.body.appendChild(rose);
+  }
+}
+
+/* Create Sparkles */
+function createSparkles() {
+  for (let i = 0; i < 40; i++) {
+    let sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+    sparkle.style.left = Math.random() * 100 + "vw";
+    sparkle.style.top = Math.random() * 100 + "vh";
+    document.body.appendChild(sparkle);
+  }
+}
+</script>
+
+</body>
+</html>
